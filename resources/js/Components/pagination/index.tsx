@@ -14,7 +14,7 @@ const Pagination = ({ links }: { links: PaginationLink[] }) => {
                         (link.active ? "bg-gray-950 " : " ") +
                         (!link.url
                             ? "!text-gray-500 cursor-not-allowed "
-                            : "hover:bg-gray-950")
+                            : "hover:bg-gray-950 hover:text-white")
                     }
                     dangerouslySetInnerHTML={{ __html: link.label }}
                 ></Link>
