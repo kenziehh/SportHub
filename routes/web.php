@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SportMatchController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -11,7 +12,8 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
     ]);
 });
-Route::get('/news', [NewsController::class,'__invoke']);
+Route::get('/news', [NewsController::class, '__invoke']);
+Route::get('/match', [SportMatchController::class, '__invoke']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Admin/Dashboard');

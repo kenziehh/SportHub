@@ -14,3 +14,14 @@ export interface PaginationLink {
 export interface Meta {
     links: PaginationLink[];
 }
+export interface MatchResponse {
+    away_image: string;
+    away_score: number;
+    away_team: string;
+    category: string;
+    home_image: string;
+    home_score: number;
+    home_team: string;
+    match_datetime: string;
+    place: string;
+}

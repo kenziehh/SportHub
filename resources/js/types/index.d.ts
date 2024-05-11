@@ -1,4 +1,9 @@
-import { Meta, NewsResponse, PaginationLink } from "./responseData";
+import {
+    MatchResponse,
+    Meta,
+    NewsResponse,
+    PaginationLink,
+} from "./responseData";
 
 export interface User {
     id: number;
@@ -15,6 +20,10 @@ export type PageProps<
     };
     news: {
         data: NewsResponse[];
+        meta: Meta;
+    };
+    match: {
+        data: MatchResponse[];
         meta: Meta;
     };
 };

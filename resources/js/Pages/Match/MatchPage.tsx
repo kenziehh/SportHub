@@ -3,7 +3,8 @@ import { PageProps } from "@/types";
 
 import React from "react";
 
-const MatchPage = ({ auth, news }: PageProps) => {
+const MatchPage = ({ auth, match }: PageProps) => {
+    console.log(match);
     return (
         <div>
             <Navbar user={auth.user} />
