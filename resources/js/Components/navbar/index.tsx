@@ -1,11 +1,13 @@
-import { PageProps } from "@/types";
+import { PageProps, User } from "@/types";
 import { Link } from "@inertiajs/react";
 import Dropdown from "../Dropdown";
 
-const Navbar = ({ auth }: PageProps) => {
+const Navbar = ({user}:{user: User}) => {
     return (
         <nav className="container flex items-center justify-between">
-            <Link href="/" className="font-bold text-3xl">SportHub</Link>
+            <Link href="/" className="font-bold text-3xl">
+                SportHub
+            </Link>
             <div className="flex gap-8 items-center">
                 <Link href="/" className="hover:text-blue-300">
                     Home
@@ -13,11 +15,11 @@ const Navbar = ({ auth }: PageProps) => {
                 <Link href="/news" className="hover:text-blue-300">
                     News
                 </Link>
-                <Link href="/about" className="hover:text-blue-300">
+                <Link href="/match" className="hover:text-blue-300">
                     About
                 </Link>
             </div>
-            {auth.user ? (
+            {user ? (
                 <Dropdown>
                     <Dropdown.Trigger>
                         <span className="inline-flex rounded-md">
@@ -25,7 +27,7 @@ const Navbar = ({ auth }: PageProps) => {
                                 type="button"
                                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                             >
-                                {auth.user.name}
+                                {user.name}
 
                                 <svg
                                     className="ms-2 -me-0.5 h-4 w-4"
