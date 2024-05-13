@@ -5,16 +5,23 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { NewsResponse } from "@/types/responseData";
-import React from "react";
+import { Link, router } from "@inertiajs/react";
 
 const NewsDashboard = ({ auth, news }: PageProps) => {
     console.log(news);
-    return (
+    const deleteNews = (news: NewsResponse) => {
+        router.delete(route("news.destroy", news.id));
+    };
+    return (    
         <Authenticated user={auth.user}>
             <main className="container">
                 <section className="flex justify-between py-10 items-center">
                     <h2 className="text-4xl">News</h2>
-                    <SecondaryButton>Create</SecondaryButton>
+                    <SecondaryButton>
+                        <Link href={route("news.create")} className="">
+                            Create
+                        </Link>
+                    </SecondaryButton>
                 </section>
                 <section className="overflow-x-auto">
                     <table className="">
@@ -43,7 +50,11 @@ const NewsDashboard = ({ auth, news }: PageProps) => {
                                         {newsData.content}
                                     </td>
                                     <td className="px-2 py-3 border-2">
-                                        <img src={newsData.image_url} alt="" className="max-w-48 max-h-48 md:max-w-96 md:max-h-96"/>
+                                        <img
+                                            src={newsData.image_url}
+                                            alt=""
+                                            className="max-w-48 max-h-48 md:max-w-96 md:max-h-96"
+                                        />
                                     </td>
                                     <td className="px-2 py-3 border-2 text-justify">
                                         {newsData.author}
@@ -51,7 +62,13 @@ const NewsDashboard = ({ auth, news }: PageProps) => {
                                     <td className="px-2 py-3 border-2 text-justify">
                                         <div className="inline-flex flex-col gap-2">
                                             <PrimaryButton>Edit</PrimaryButton>
-                                            <DangerButton>Delete</DangerButton>
+                                            <DangerButton
+                                                onClick={(e) =>
+                                                    deleteNews(newsData)
+                                                }
+                                            >
+                                                Delete
+                                            </DangerButton>
                                         </div>
                                     </td>
                                 </tr>

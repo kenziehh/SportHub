@@ -6,7 +6,10 @@ use App\Http\Requests\StoreNewsRequest;
 use App\Http\Requests\UpdateNewsRequest;
 use App\Http\Resources\NewsResource;
 use App\Models\News;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
+
 
 class NewsController extends Controller
 {
@@ -17,7 +20,7 @@ class NewsController extends Controller
     {
         $query = News::query();
         $news = $query->paginate(20);
-        return Inertia('Admin/News/NewsDashboard', [
+        return Inertia('Admin/News/Index', [
             "news" => NewsResource::collection($news)
         ]);
     }
@@ -43,7 +46,16 @@ class NewsController extends Controller
      */
     public function store(StoreNewsRequest $request)
     {
-        //
+        $data = $request->validated();
+        /** @var $image \Illuminate\Http\UploadedFile */
+        $image_url = $data['image'] ?? null;
+        // if ($image_url) {
+        //     $data['image_url'] = $image_url->store('news/' . Str::random(), 'public');
+        // }
+        News::create($data);
+
+        return to_route('news.index')
+            ->with('success', 'Project was created');
     }
 
     /**
@@ -75,6 +87,12 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+        $title = $news->title;
+        $news->delete();
+        // if ($news->image_path) {
+        //     Storage::disk('public')->deleteDirectory(dirname($news->image_url));
+        // }
+        return to_route('news.index')
+            ->with('success', "$news \"$title\" was deleted");
     }
 }

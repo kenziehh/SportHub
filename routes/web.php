@@ -21,6 +21,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource("admin/news", NewsController::class);
+    Route::post('admin/news/create', [NewsController::class, 'store'])->name('news.store');
 });
 
 Route::middleware('auth')->group(function () {
