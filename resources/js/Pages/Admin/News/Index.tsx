@@ -12,7 +12,7 @@ const NewsDashboard = ({ auth, news }: PageProps) => {
     const deleteNews = (news: NewsResponse) => {
         router.delete(route("news.destroy", news.id));
     };
-    return (    
+    return (
         <Authenticated user={auth.user}>
             <main className="container">
                 <section className="flex justify-between py-10 items-center">
@@ -51,7 +51,13 @@ const NewsDashboard = ({ auth, news }: PageProps) => {
                                     </td>
                                     <td className="px-2 py-3 border-2">
                                         <img
-                                            src={newsData.image_url}
+                                            src={
+                                                newsData.image_url.startsWith(
+                                                    "news_images"
+                                                )
+                                                    ? `/storage/${newsData.image_url}`
+                                                    : newsData.image_url
+                                            }
                                             alt=""
                                             className="max-w-48 max-h-48 md:max-w-96 md:max-h-96"
                                         />

@@ -46,16 +46,14 @@ class NewsController extends Controller
      */
     public function store(StoreNewsRequest $request)
     {
-        $data = $request->validated();
-        /** @var $image \Illuminate\Http\UploadedFile */
-        $image_url = $data['image'] ?? null;
-        // if ($image_url) {
-        //     $data['image_url'] = $image_url->store('news/' . Str::random(), 'public');
-        // }
-        News::create($data);
+        $validated = $request->validated();
+        // Handle the image upload if provided
+        if ($request->hasFile('image_url')) {
+            $validated['image_url'] = $request->file('image_url')->store('news_images', 'public');
+        }
+        $news = News::create($validated);
 
-        return to_route('news.index')
-            ->with('success', 'News was created');
+        return to_route('news.index')->with('success', 'News "' . $news->title . '" was created successfully.');
     }
 
     /**

@@ -13,15 +13,17 @@ const Create = ({ auth }: PageProps) => {
         title: "",
         content: "",
         author: "",
-        image_url: "",
+        image_url: null, // Change to null to handle File object
         release_date: "",
     });
+
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-        console.log(data);
         e.preventDefault();
-        post(route("news.store"));
-        console.log(data);
+        post(route("news.store"), {
+            forceFormData: true, // Ensures form data is sent properly
+        });
     };
+
     return (
         <Authenticated user={auth.user}>
             <main className="container">
@@ -40,14 +42,13 @@ const Create = ({ auth }: PageProps) => {
                         <InputError message={errors.title} className="mt-2" />
                     </div>
                     <div>
-                        <InputLabel htmlFor="author" value="author" />
+                        <InputLabel htmlFor="author" value="Author" />
                         <TextInput
                             id="author"
                             className="mt-1 block w-full"
                             value={data.author}
                             onChange={(e) => setData("author", e.target.value)}
                             required
-                            isFocused
                             autoComplete="author"
                         />
                         <InputError message={errors.author} className="mt-2" />
@@ -75,15 +76,7 @@ const Create = ({ auth }: PageProps) => {
                                 const file = e.target.files
                                     ? e.target.files[0]
                                     : null;
-                                if (file) {
-                                    const reader = new FileReader();
-                                    reader.onloadend = () => {
-                                        if (typeof reader.result === "string") {
-                                            setData("image_url", reader.result);
-                                        }
-                                    };
-                                    reader.readAsDataURL(file);
-                                }
+                                setData("image_url", file); // Set the File object directly
                             }}
                         />
                         <InputError
@@ -92,24 +85,22 @@ const Create = ({ auth }: PageProps) => {
                         />
                     </div>
                     <div>
-                        <div>
-                            <label htmlFor="release_date">release_date</label>
-                            <TextInput
-                                id="release_date"
-                                className=""
-                                value={data.release_date}
-                                onChange={(e) =>
-                                    setData("release_date", e.target.value)
-                                }
-                                type="date"
-                                required
-                                autoComplete="release_date"
-                            />
-                            <InputError
-                                message={errors.release_date}
-                                className="mt-2"
-                            />
-                        </div>
+                        <label htmlFor="release_date">Release Date</label>
+                        <TextInput
+                            id="release_date"
+                            className=""
+                            value={data.release_date}
+                            onChange={(e) =>
+                                setData("release_date", e.target.value)
+                            }
+                            type="date"
+                            required
+                            autoComplete="release_date"
+                        />
+                        <InputError
+                            message={errors.release_date}
+                            className="mt-2"
+                        />
                     </div>
                     <SecondaryButton type="submit">Create</SecondaryButton>
                 </form>
