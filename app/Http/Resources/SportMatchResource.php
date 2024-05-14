@@ -15,6 +15,7 @@ class SportMatchResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'home_team' => $this->home_team,
             'home_score' => $this->home_score,
             'away_team' => $this->away_team,

@@ -6,6 +6,7 @@ use App\Models\SportMatch;
 use App\Http\Requests\StoreSportMatchRequest;
 use App\Http\Requests\UpdateSportMatchRequest;
 use App\Http\Resources\SportMatchResource;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class SportMatchController extends Controller
@@ -15,10 +16,15 @@ class SportMatchController extends Controller
      */
     public function index()
     {
-        
+        $query = SportMatch::query();
+        $sportMatch = $query->paginate(20);
+        return Inertia('Admin/Match/Index', [
+            "match" => SportMatchResource::collection($sportMatch)
+        ]);
     }
 
-    public function __invoke(){
+    public function __invoke()
+    {
         $query = SportMatch::query();
         $sportMatch = $query->paginate(20);
         return Inertia('Match/MatchPage', [
@@ -71,6 +77,9 @@ class SportMatchController extends Controller
      */
     public function destroy(SportMatch $sportMatch)
     {
-        //
+        $id = $sportMatch->id;
+        $sportMatch->delete();
+        return to_route('match.index')
+            ->with('success', "$sportMatch \"$id\" was deleted");
     }
 }

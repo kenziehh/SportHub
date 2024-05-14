@@ -49,9 +49,9 @@ const Navbar = ({user}:{user: User}) => {
                         <Dropdown.Link href={route("profile.edit")}>
                             Profile
                         </Dropdown.Link>
-                        {/* <Dropdown.Link href={route("dashboard")}>
+                        <Dropdown.Link href={route("news.index")}>
                             Dashboard
-                        </Dropdown.Link> */}
+                        </Dropdown.Link>
                         <Dropdown.Link
                             href={route("logout")}
                             method="post"

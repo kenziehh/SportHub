@@ -15,6 +15,7 @@ export interface Meta {
     links: PaginationLink[];
 }
 export interface MatchResponse {
+    id: number;
     away_image: string;
     away_score: number;
     away_team: string;

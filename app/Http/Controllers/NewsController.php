@@ -55,7 +55,7 @@ class NewsController extends Controller
         News::create($data);
 
         return to_route('news.index')
-            ->with('success', 'Project was created');
+            ->with('success', 'News was created');
     }
 
     /**

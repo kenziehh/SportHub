@@ -3,6 +3,7 @@
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SportMatchController;
+use App\Models\SportMatch;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,7 +22,8 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource("admin/news", NewsController::class);
-    Route::post('admin/news/create', [NewsController::class, 'store'])->name('news.store');
+    // Route::post('admin/news/create', [NewsController::class, 'store'])->name('news.store');
+    Route::resource("admin/match", SportMatchController::class);
 });
 
 Route::middleware('auth')->group(function () {
