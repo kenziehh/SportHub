@@ -92,6 +92,7 @@ class NewsController extends Controller
         // if ($news->image_path) {
         //     Storage::disk('public')->deleteDirectory(dirname($news->image_url));
         // }
+        // return response()->json(['message' => $title]);
         return to_route('news.index')
             ->with('success', "$news \"$title\" was deleted");
     }

@@ -6,6 +6,7 @@ use App\Models\SportMatch;
 use App\Http\Requests\StoreSportMatchRequest;
 use App\Http\Requests\UpdateSportMatchRequest;
 use App\Http\Resources\SportMatchResource;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -75,11 +76,19 @@ class SportMatchController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SportMatch $sportMatch)
+    public function destroy($id)
     {
-        $id = $sportMatch->id;
+        $sportMatch = SportMatch::find($id);
+
+        if (!$sportMatch) {
+            return response()->json(['error' => 'SportMatch not found'], 404);
+        }
+
+        Log::info('Found SportMatch:', ['id' => $sportMatch->id]);
+
         $sportMatch->delete();
         return to_route('match.index')
-            ->with('success', "$sportMatch \"$id\" was deleted");
+            ->with('success', "match was deleted");
+        // return response()->json(['message' => $sportMatch->id]);
     }
 }

@@ -10,8 +10,8 @@ import { Link, router } from "@inertiajs/react";
 const MatchDashboard = ({ auth, match }: PageProps) => {
     console.log(match);
     const deleteMatch = (matchParams: MatchResponse) => {
-        console.log(matchParams);
-        router.delete(route("match.destroy", matchParams.place), {
+        console.log(matchParams.id);
+        router.delete(route("match.destroy", matchParams.id), {
             onSuccess: (page) => {
                 console.log("Delete successful", page);
                 // Optionally, refresh the list or show a success message
