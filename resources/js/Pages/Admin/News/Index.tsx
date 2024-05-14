@@ -67,7 +67,16 @@ const NewsDashboard = ({ auth, news }: PageProps) => {
                                     </td>
                                     <td className="px-2 py-3 border-2 text-justify">
                                         <div className="inline-flex flex-col gap-2">
-                                            <PrimaryButton>Edit</PrimaryButton>
+                                            <PrimaryButton>
+                                                <Link
+                                                    href={route(
+                                                        "news.edit",
+                                                        newsData.id
+                                                    )}
+                                                >
+                                                    Edit
+                                                </Link>
+                                            </PrimaryButton>
                                             <DangerButton
                                                 onClick={(e) =>
                                                     deleteNews(newsData)

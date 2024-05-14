@@ -22,6 +22,9 @@ export type PageProps<
         data: NewsResponse[];
         meta: Meta;
     };
+    newsData: {
+        data: NewsResponse;
+    };
     match: {
         data: MatchResponse[];
         meta: Meta;
