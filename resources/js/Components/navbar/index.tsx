@@ -1,25 +1,42 @@
 import { PageProps, User } from "@/types";
-import { Link } from "@inertiajs/react";
 import Dropdown from "../Dropdown";
+import { Link } from "react-scroll";
 
-const Navbar = ({user}:{user: User}) => {
+import { Link as InertiaLink } from "@inertiajs/react";
+
+const Navbar = ({ authenticated }: { authenticated: User }) => {
     return (
         <nav className="container flex items-center justify-between">
-            <Link href="/" className="font-bold text-3xl">
-                SportHub
-            </Link>
+            <InertiaLink href="/" className="font-bold text-3xl">
+                <img src="/assets/logo-nav.png" alt="" />
+            </InertiaLink>
             <div className="flex gap-8 items-center">
-                <Link href="/" className="hover:text-blue-300">
-                    Home
-                </Link>
-                <Link href="/news" className="hover:text-blue-300">
+                <Link
+                    to="news-section"
+                    className="hover:text-blue-300"
+                    smooth={true}
+                    duration={500}
+                >
                     News
                 </Link>
-                <Link href="/match" className="hover:text-blue-300">
-                    About
+                <Link
+                    to="match-section"
+                    className="hover:text-blue-300"
+                    smooth={true}
+                    duration={500}
+                >
+                    News
+                </Link>
+                <Link
+                    to="live-section"
+                    className="hover:text-blue-300"
+                    smooth={true}
+                    duration={500}
+                >
+                    Live
                 </Link>
             </div>
-            {user ? (
+            {authenticated ? (
                 <Dropdown>
                     <Dropdown.Trigger>
                         <span className="inline-flex rounded-md">
@@ -27,7 +44,7 @@ const Navbar = ({user}:{user: User}) => {
                                 type="button"
                                 className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
                             >
-                                {user.name}
+                                {authenticated.name}
 
                                 <svg
                                     className="ms-2 -me-0.5 h-4 w-4"
@@ -69,18 +86,18 @@ const Navbar = ({user}:{user: User}) => {
                 // </Link>
                 <>
                     <div>
-                        <Link
+                        <InertiaLink
                             href={route("login")}
                             className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                         >
                             Log in
-                        </Link>
-                        <Link
+                        </InertiaLink>
+                        <InertiaLink
                             href={route("register")}
                             className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                         >
                             Register
-                        </Link>
+                        </InertiaLink>
                     </div>
                 </>
             )}
