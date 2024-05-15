@@ -5,44 +5,25 @@ import TextInput from "@/Components/TextInput";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { NewsForm } from "@/types/formData";
-import { useForm } from "@inertiajs/react";
+import { router, useForm } from "@inertiajs/react";
 import { FormEvent } from "react";
 
 const Edit = ({ auth, newsData }: PageProps) => {
-    const { data, setData, patch, errors } = useForm<NewsForm>({
-        title: newsData.data.title||"",
-        content: newsData.data.content||"",
-        author: newsData.data.author||"",
+    const { data, setData, post, errors } = useForm<NewsForm>({
+        title: newsData.data.title || "",
+        content: newsData.data.content || "",
+        author: newsData.data.author || "",
         image_url: null, // Initially null to handle File object
-        release_date: newsData.data.release_date
+        release_date: newsData.data.release_date,
     });
 
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        // Create FormData object
-        // const formData = new FormData();
-        // formData.append("title", data.title);
-        // formData.append("content", data.content);
-        // formData.append("author", data.author);
-        // if (data.image_url) {
-        //     formData.append("image_url", data.image_url); // Append file if exists
-        // }
-        // formData.append("release_date", data.release_date);
-
-        if (newsData.data.id) {
-            patch(route("news.update", newsData.data.id), {
-                forceFormData: true, // Ensures form data is sent properly
-                onSuccess: (page) => {
-                    console.log("Update successful", page);
-                },
-                onError: (errors) => {
-                    console.error("Update failed", errors);
-                },
-            });
-        } else {
-            console.error("newsData.id is undefined");
-        }
+    
+        router.post(route("news.update", newsData.data.id), {
+            _method: "patch",
+            ...data,
+        });
     };
 
     return (

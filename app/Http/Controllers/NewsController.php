@@ -79,26 +79,22 @@ class NewsController extends Controller
      */
     public function update(UpdateNewsRequest $request, News $news)
     {
+        // Validate the request data
+        $validated = $request->validated();
 
-        // // Validate the request data
-        // $validated = $request->validated();
+        // Handle the image upload if provided
+        if ($request->hasFile('image_url')) {
+            // Delete the old image if it exists
+            if ($news->image_url) {
+                Storage::disk('public')->delete($news->image_url);
+            }
 
-        // // Handle the image upload if provided
-        // if ($request->hasFile('image_url')) {
-        //     // Delete the old image if it exists
-        //     if ($news->image_url) {
-        //         Storage::disk('public')->delete($news->image_url);
-        //     }
+            // Store the new image and update the image_url in the validated data
+            $validated['image_url'] = $request->file('image_url')->store('news_images', 'public');
+        }
 
-        //     // Store the new image and update the image_url in the validated data
-        //     $validated['image_url'] = $request->file('image_url')->store('news_images', 'public');
-        // }
-
-        // // Update the news with the validated data
-        // $news->update($validated);
-        // // return response()->json(['message' => $validated]);
-
-        // Redirect to the news index page with a success message
+        // Update the news with the validated data
+        $news->update($validated);
         return to_route('news.index')->with('success', 'News "' . $news->title . '" was updated successfully.');
     }
 

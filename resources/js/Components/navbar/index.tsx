@@ -25,7 +25,7 @@ const Navbar = ({ authenticated }: { authenticated: User }) => {
                     smooth={true}
                     duration={500}
                 >
-                    News
+                    Match
                 </Link>
                 <Link
                     to="live-section"
