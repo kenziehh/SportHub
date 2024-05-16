@@ -2,9 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Athlete;
+use App\Models\Highlight;
 use App\Models\News;
 use App\Models\SportMatch;
+use App\Models\Team;
 use App\Models\User;
+use Database\Factories\HighlightFactory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -23,7 +27,9 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         News::factory()->count(50)->create();
-
+        Team::factory()->count(10)->create();
+        Athlete::factory()->count(50)->create();
         SportMatch::factory()->count(50)->create();
+        Highlight::factory()->count(50)->create();
     }
 }

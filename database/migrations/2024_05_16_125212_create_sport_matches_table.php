@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('sport_matches', function (Blueprint $table) {
             $table->id();
             $table->string("category");
-            $table->string("home_team");
+            $table->string("tournament_name");
+            $table->unsignedBigInteger("home_team_id");
+            $table->unsignedBigInteger("away_team_id");
             $table->integer("home_score");
-            $table->string("away_team");
             $table->integer("away_score");
-            $table->string("place");
-            $table->string("home_image");
-            $table->string("away_image");
             $table->dateTime('match_datetime');
             $table->timestamps();
+            $table->foreign('home_team_id')->references('id')->on('teams');
+            $table->foreign('away_team_id')->references('id')->on('teams');
         });
     }
 

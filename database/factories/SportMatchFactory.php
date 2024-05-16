@@ -17,16 +17,13 @@ class SportMatchFactory extends Factory
     public function definition(): array
     {
         return [
-            'home_team' => fake()->name(),
-            'home_score' => fake()->numberBetween(0, 5),
-            'away_team' => fake()->name(),
-            'away_score' => fake()->numberBetween(0, 5),
-            'place' => fake()->city(),
-            'home_image' => fake()->imageUrl(),
-            'away_image' => fake()->imageUrl(),
-            'match_datetime' => $this->faker->dateTimeBetween('-1 week', '+1 week'),
             'category' => fake()->randomElement(['basketball', 'football']),
-
+            'home_team_id' => fake()->numberBetween(1, 10),
+            'home_score' => fake()->numberBetween(0, 5),
+            'away_team_id' => 2,
+            'away_score' => fake()->numberBetween(0, 5),
+            'match_datetime' => fake()->dateTimeThisMonth(),
+            'tournament_name' => fake()->sentence(),
 
         ];
     }
