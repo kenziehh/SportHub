@@ -17,11 +17,12 @@ class NewsFactory extends Factory
     public function definition(): array
     {
         return [
-            "title"=>fake()->sentence(),
-            "content"=>fake()->realText(),
-            "author"=>fake()->name(),
-            "image_url"=>fake()->imageUrl(),
-            "release_date"=>fake()->date(),
+            "title" => fake()->sentence(),
+            "content" => fake()->realText(),
+            "author" => fake()->name(),
+            "image_url" => fake()->imageUrl(),
+            'category' => fake()->randomElement(['Basketball', 'Football', 'Badminton', 'Futsal', 'Volley', 'Baseball']),
+            "release_date" => fake()->date(),
         ];
     }
 }

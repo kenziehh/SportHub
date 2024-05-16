@@ -25,8 +25,9 @@ class UpdateNewsRequest extends FormRequest
             'title' => 'string',
             'content' => 'string',
             'author' => 'string',
+            'category' => 'string',
             'image_url' => 'nullable',
-            'release_date' => 'nullable',
+            // 'release_date' => 'nullable',
         ];
     }
 }

@@ -46,7 +46,9 @@ class NewsController extends Controller
      */
     public function store(StoreNewsRequest $request)
     {
+        // dd($request);
         $validated = $request->validated();
+        // dd($validated);
         // Handle the image upload if provided
         if ($request->hasFile('image_url')) {
             $validated['image_url'] = $request->file('image_url')->store('news_images', 'public');
@@ -103,13 +105,18 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        $title = $news->title;
+        // Path to the image file relative to the storage/app/public directory
+        $news_image_path = 'news_images/' . $news->image_url;
+
+        // Delete the news record
         $news->delete();
-        // if ($news->image_path) {
-        //     Storage::disk('public')->deleteDirectory(dirname($news->image_url));
-        // }
-        // return response()->json(['message' => $title]);
+
+        // Check if the image file exists and delete it
+        if (Storage::disk('public')->exists($news_image_path)) {
+            Storage::disk('public')->delete($news_image_path);
+        }
+
         return to_route('news.index')
-            ->with('success', "$news \"$title\" was deleted");
+            ->with('success', "News '{$news->title}' was deleted");
     }
 }

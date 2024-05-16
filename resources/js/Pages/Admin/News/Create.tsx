@@ -7,20 +7,22 @@ import { PageProps } from "@/types";
 import { NewsForm } from "@/types/formData";
 import { useForm } from "@inertiajs/react";
 import { FormEvent } from "react";
+import { newsCategory } from "@/Utils/newsCategory";
+import DropdownInput from "@/Components/dropdownInput";
 
 const Create = ({ auth }: PageProps) => {
     const { data, setData, post, errors, reset } = useForm<NewsForm>({
         title: "",
         content: "",
         author: "",
-        image_url: null, // Change to null to handle File object
-        release_date: "",
+        category: "Football",
+        image_url: null,
     });
 
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         post(route("news.store"), {
-            forceFormData: true, // Ensures form data is sent properly
+            forceFormData: true,
         });
     };
 
@@ -54,7 +56,7 @@ const Create = ({ auth }: PageProps) => {
                         <InputError message={errors.author} className="mt-2" />
                     </div>
                     <div>
-                        <label htmlFor="content">Content</label>
+                        <InputLabel htmlFor="content" value="Content" />
                         <textarea
                             id="content"
                             className="mt-1 block w-full h-48 resize-vertical"
@@ -76,7 +78,7 @@ const Create = ({ auth }: PageProps) => {
                                 const file = e.target.files
                                     ? e.target.files[0]
                                     : null;
-                                setData("image_url", file); // Set the File object directly
+                                setData("image_url", file);
                             }}
                         />
                         <InputError
@@ -85,20 +87,17 @@ const Create = ({ auth }: PageProps) => {
                         />
                     </div>
                     <div>
-                        <label htmlFor="release_date">Release Date</label>
-                        <TextInput
-                            id="release_date"
-                            className=""
-                            value={data.release_date}
+                        <InputLabel htmlFor="category" value="Category" />
+                        <DropdownInput
+                            options={newsCategory}
                             onChange={(e) =>
-                                setData("release_date", e.target.value)
+                                setData("category", e.target.value)
                             }
-                            type="date"
+                            value={data.category} // Bind the value to data.category
                             required
-                            autoComplete="release_date"
                         />
                         <InputError
-                            message={errors.release_date}
+                            message={errors.category}
                             className="mt-2"
                         />
                     </div>

@@ -1,3 +1,4 @@
+import DropdownInput from "@/Components/dropdownInput";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import SecondaryButton from "@/Components/SecondaryButton";
@@ -5,6 +6,7 @@ import TextInput from "@/Components/TextInput";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { NewsForm } from "@/types/formData";
+import { newsCategory } from "@/Utils/newsCategory";
 import { router, useForm } from "@inertiajs/react";
 import { FormEvent } from "react";
 
@@ -13,13 +15,14 @@ const Edit = ({ auth, newsData }: PageProps) => {
         title: newsData.data.title || "",
         content: newsData.data.content || "",
         author: newsData.data.author || "",
+        category: newsData.data.category,
         image_url: null, // Initially null to handle File object
-        release_date: newsData.data.release_date,
+        // release_date: newsData.data.release_date,
     });
-
+    console.log(newsData);
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-    
+
         router.post(route("news.update", newsData.data.id), {
             _method: "patch",
             ...data,
@@ -109,6 +112,21 @@ const Edit = ({ auth, newsData }: PageProps) => {
                             />
                         </div>
                         <div>
+                            <InputLabel htmlFor="category" value="Category" />
+                            <DropdownInput
+                                options={newsCategory}
+                                onChange={(e) =>
+                                    setData("category", e.target.value)
+                                }
+                                value={data.category} // Bind the value to data.category
+                                required
+                            />
+                            <InputError
+                                message={errors.category}
+                                className="mt-2"
+                            />
+                        </div>
+                        {/* <div>
                             <InputLabel
                                 htmlFor="release_date"
                                 value="Release Date"
@@ -129,7 +147,7 @@ const Edit = ({ auth, newsData }: PageProps) => {
                                 message={errors.release_date}
                                 className="mt-2"
                             />
-                        </div>
+                        </div> */}
                         <SecondaryButton type="submit">Edit</SecondaryButton>
                     </form>
                 ) : (

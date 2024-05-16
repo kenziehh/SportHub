@@ -25,8 +25,9 @@ class StoreNewsRequest extends FormRequest
             'title' => ['required', 'max:255'],
             'content' => ['required', 'string'],
             'author' => ['required', 'string'],
+            'category' => ['required', 'string'],
             'image_url' => ['nullable', 'image'],
-            'release_date' => ['nullable', 'date'],
+            // 'release_date' => ['nullable', 'date'],
         ];
     }
 }

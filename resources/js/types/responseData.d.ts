@@ -2,6 +2,7 @@ export interface NewsResponse {
     id: number;
     title: string;
     content: string;
+    category: string;
     author: string;
     image_url: string;
     release_date: string;
