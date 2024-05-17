@@ -3,6 +3,7 @@ import {
     Meta,
     NewsResponse,
     PaginationLink,
+    TeamResponse,
 } from "./responseData";
 
 export interface User {
@@ -27,6 +28,10 @@ export type PageProps<
     };
     match: {
         data: MatchResponse[];
+        meta: Meta;
+    };
+    teams: {
+        data: TeamResponse[];
         meta: Meta;
     };
 };

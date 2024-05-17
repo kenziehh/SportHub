@@ -27,3 +27,12 @@ export interface MatchResponse {
     match_datetime: string;
     place: string;
 }
+
+export interface TeamResponse {
+    id: number;
+    name: string;
+    team_logo: string;
+    country: string;
+    sport_category: string;
+    station: string;
+}

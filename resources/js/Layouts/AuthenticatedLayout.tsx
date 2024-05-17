@@ -39,6 +39,12 @@ export default function Authenticated({
                                 >
                                     Match
                                 </NavLink>
+                                <NavLink
+                                    href={route("team.index")}
+                                    active={route().current("team.index")}
+                                >
+                                    Team
+                                </NavLink>
                             </div>
                         </div>
 

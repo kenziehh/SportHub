@@ -34,7 +34,7 @@ const MatchDashboard = ({ auth, match }: PageProps) => {
                     </SecondaryButton>
                 </section>
                 <section className="overflow-x-auto">
-                    <table className="">
+                    <table className="w-full">
                         <th className="text-center px-2 py-3 border-2">
                             Home Team
                         </th>
