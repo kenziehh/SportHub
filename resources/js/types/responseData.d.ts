@@ -36,3 +36,12 @@ export interface TeamResponse {
     sport_category: string;
     station: string;
 }
+
+export interface AthleteResponse {
+    id: number;
+    name: string;
+    image_url: string;
+    team_id: number;
+    country: string;
+    sport_category: string;
+}

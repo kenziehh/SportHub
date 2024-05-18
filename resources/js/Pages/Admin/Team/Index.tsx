@@ -84,7 +84,14 @@ export default function TeamDashboard({ auth, teams }: PageProps) {
                                         </td>
                                         <td className="px-2 py-3 border-2 text-center">
                                             <PrimaryButton>
-                                                Manage Player
+                                                <Link
+                                                    href={route(
+                                                        "team.athletes",
+                                                        teamData.id
+                                                    )}
+                                                >
+                                                    Manage Player
+                                                </Link>
                                             </PrimaryButton>
                                         </td>
                                         <td className="px-2 py-3 border-2 text-center">

@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Team;
 use App\Http\Requests\StoreTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
+use App\Http\Resources\AthleteResource;
 use App\Http\Resources\TeamResource;
+use App\Models\Athlete;
+use Inertia\Inertia;
 
 class TeamController extends Controller
 {
@@ -67,5 +70,14 @@ class TeamController extends Controller
     public function destroy(Team $team)
     {
         //
+    }
+
+    public function getTeamAthletes(Team $team)
+    {
+        $athletes = $team->athletes()->get();
+        return Inertia::render('Admin/Team/Athlete/Index', [
+            'teamData' => new TeamResource($team),
+            'athletes' => AthleteResource::collection($athletes)
+        ]);
     }
 }

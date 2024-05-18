@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SportMatchController;
@@ -24,6 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::resource("admin/news", NewsController::class);
     Route::resource("admin/match", SportMatchController::class);
     Route::resource("admin/team", TeamController::class);
+    Route::resource("admin/team/{team}/athlete", AthleteController::class);
+    Route::get('admin/team/{team}/athlete', [TeamController::class, 'getTeamAthletes'])->name('team.athletes');
 });
 
 

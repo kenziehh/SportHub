@@ -4,7 +4,7 @@ import SecondaryButton from "@/Components/SecondaryButton";
 import TextInput from "@/Components/TextInput";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
-import { NewsForm } from "@/types/formData";
+import { AthleteForm } from "@/types/formData";
 import { useForm } from "@inertiajs/react";
 import { FormEvent } from "react";
 import { newsCategory } from "@/Utils/newsCategory";
@@ -12,17 +12,18 @@ import DropdownInput from "@/Components/dropdownInput";
 
 const Create = ({ auth, teamData }: PageProps) => {
     console.log(teamData);
-    const { data, setData, post, errors, reset } = useForm<NewsForm>({
-        title: "",
-        content: "",
-        author: "",
-        category: "Football",
-        image_url: null,
-    });
+    const { data, setData, post, errors, reset, transform } =
+        useForm<AthleteForm>({
+            name: "",
+            image_url: null,
+            team_id: teamData.data.id,
+            country: "",
+            sport_category: "",
+        });
 
     const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        post(route("news.store"), {
+        post(route("athlete.store", teamData.data.id), {
             forceFormData: true,
         });
     };
@@ -32,42 +33,43 @@ const Create = ({ auth, teamData }: PageProps) => {
             <main className="container">
                 <form onSubmit={onSubmit}>
                     <div>
-                        <InputLabel htmlFor="title" value="Title" />
+                        <InputLabel htmlFor="name" value="name" />
                         <TextInput
-                            id="title"
+                            id="name"
                             className="mt-1 block w-full"
-                            value={data.title}
-                            onChange={(e) => setData("title", e.target.value)}
+                            value={data.name}
+                            onChange={(e) => setData("name", e.target.value)}
                             required
                             isFocused
-                            autoComplete="title"
+                            autoComplete="name"
                         />
-                        <InputError message={errors.title} className="mt-2" />
+                        <InputError message={errors.name} className="mt-2" />
                     </div>
                     <div>
-                        <InputLabel htmlFor="author" value="Author" />
+                        <InputLabel htmlFor="country" value="country" />
                         <TextInput
-                            id="author"
+                            id="country"
                             className="mt-1 block w-full"
-                            value={data.author}
-                            onChange={(e) => setData("author", e.target.value)}
+                            value={data.country}
+                            onChange={(e) => setData("country", e.target.value)}
                             required
-                            autoComplete="author"
+                            autoComplete="country"
                         />
-                        <InputError message={errors.author} className="mt-2" />
+                        <InputError message={errors.country} className="mt-2" />
                     </div>
-                    <div>
+                    {/* <div>
                         <InputLabel htmlFor="content" value="Content" />
-                        <textarea
-                            id="content"
-                            className="mt-1 block w-full h-48 resize-vertical"
-                            value={data.content}
-                            onChange={(e) => setData("content", e.target.value)}
+                        <TextInput
+                            id="country"
+                            className="mt-1 block w-full"
+                            value={data.country}
+                            onChange={(e) => setData("country", e.target.value)}
                             required
-                            autoComplete="content"
+                            autoComplete="country"
                         />
                         <InputError message={errors.content} className="mt-2" />
                     </div>
+                    <div> */}
                     <div>
                         <InputLabel htmlFor="image_url" value="Project Image" />
                         <TextInput
@@ -88,17 +90,20 @@ const Create = ({ auth, teamData }: PageProps) => {
                         />
                     </div>
                     <div>
-                        <InputLabel htmlFor="category" value="Category" />
+                        <InputLabel
+                            htmlFor="sport_category"
+                            value="sport_category"
+                        />
                         <DropdownInput
                             options={newsCategory}
                             onChange={(e) =>
-                                setData("category", e.target.value)
+                                setData("sport_category", e.target.value)
                             }
-                            value={data.category} // Bind the value to data.category
+                            value={data.sport_category} // Bind the value to data.sport_category
                             required
                         />
                         <InputError
-                            message={errors.category}
+                            message={errors.sport_category}
                             className="mt-2"
                         />
                     </div>

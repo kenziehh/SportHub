@@ -1,4 +1,5 @@
 import {
+    AthleteResponse,
     MatchResponse,
     Meta,
     NewsResponse,
@@ -32,6 +33,13 @@ export type PageProps<
     };
     teams: {
         data: TeamResponse[];
+        meta: Meta;
+    };
+    teamData: {
+        data: TeamResponse;
+    };
+    athletes: {
+        data: AthleteResponse[];
         meta: Meta;
     };
 };

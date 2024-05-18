@@ -17,11 +17,11 @@ class AthleteFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name,
-            'team_id' => 1,
+            'name' => fake()->name(),
+            'team_id' => random_int(1, 5),
             'image_url' => fake()->imageUrl(),
-            'country' => fake()->country,
-            'sport_category' => fake()->word,
+            'country' => fake()->country(),
+            'sport_category' => fake()->word(),
         ];
     }
 }
