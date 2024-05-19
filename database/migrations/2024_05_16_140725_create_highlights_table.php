@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('video_url');
             $table->timestamps();
-            $table->foreign('sport_match_id')->references('id')->on('sport_matches');
+            $table->foreign('sport_match_id')->references('id')->on('sport_matches')->onDelete('cascade');
         });
     }
 
