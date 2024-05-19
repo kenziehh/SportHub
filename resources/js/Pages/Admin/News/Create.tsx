@@ -10,8 +10,7 @@ import { FormEvent } from "react";
 import { newsCategory } from "@/Utils/newsCategory";
 import DropdownInput from "@/Components/dropdownInput";
 
-const Create = ({ auth, teamData }: PageProps) => {
-    console.log(teamData);
+const Create = ({ auth }: PageProps) => {
     const { data, setData, post, errors, reset } = useForm<NewsForm>({
         title: "",
         content: "",
