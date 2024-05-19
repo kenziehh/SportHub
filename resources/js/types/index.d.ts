@@ -42,4 +42,7 @@ export type PageProps<
         data: AthleteResponse[];
         meta: Meta;
     };
+    athleteData: {
+        data: AthleteResponse;
+    };
 };

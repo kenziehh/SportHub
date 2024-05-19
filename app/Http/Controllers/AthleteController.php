@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Athlete;
 use App\Http\Requests\StoreAthleteRequest;
 use App\Http\Requests\UpdateAthleteRequest;
+use App\Http\Resources\AthleteResource;
 use App\Http\Resources\TeamResource;
 use App\Models\Team;
 use Illuminate\Support\Facades\Storage;
@@ -57,17 +58,31 @@ class AthleteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Athlete $athlete)
+    public function edit(Team $team, Athlete $athlete)
     {
-        //
+        return Inertia('Admin/Team/Athlete/Edit', [
+            'teamData' => new TeamResource($team),
+            'athleteData' =>  new AthleteResource($athlete),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAthleteRequest $request, Athlete $athlete)
+    public function update(UpdateAthleteRequest $request, Team $team, Athlete $athlete)
     {
-        //
+        $validated = $request->validated();
+        // dd($validated);
+        if ($request->hasFile('image_url')) {
+            if ($athlete->image_url) {
+                Storage::disk('public')->delete($athlete->image_url);
+            }
+            $validated['image_url'] = $request->file('image_url')->store('athlete_images', 'public');
+        }
+
+        $athlete->update($validated);
+
+        return redirect()->route('team.athletes', $team->id)->with('success', 'Athlete updated successfully');
     }
 
     /**
@@ -76,6 +91,7 @@ class AthleteController extends Controller
     public function destroy(Athlete $athlete)
     {
         $athlete_image_path = 'athlete_images/' . $athlete->image_url;
+
         // Delete the news record
         $athlete->delete();
 

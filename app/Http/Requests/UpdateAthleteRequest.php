@@ -11,7 +11,7 @@ class UpdateAthleteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateAthleteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['string', 'max:255'],
+            'image_url' => ['nullable', 'image'],
+            'team_id' => ['nullable'],
+            'country' => ['string'],
+            'sport_category' => ['string'],
         ];
     }
 }

@@ -92,15 +92,20 @@ export default function TeamAthlete({ auth, teamData, athletes }: PageProps) {
                                             <td className="px-2 py-3 border-2 text-justify">
                                                 <div className="inline-flex flex-col gap-2">
                                                     <PrimaryButton>
-                                                        {/* <Link
-                                                            // href={route(
-                                                            //     "athletes.edit",
-                                                            //     athletesData.id
-                                                            // )}
+                                                        <Link
+                                                            href={route(
+                                                                "athlete.edit",
+                                                                {
+                                                                    team: teamData
+                                                                        .data
+                                                                        .id,
+                                                                    athlete:
+                                                                        athletesData.id,
+                                                                }
+                                                            )}
                                                         >
                                                             Edit
-                                                        </Link> */}
-                                                        Edit
+                                                        </Link>
                                                     </PrimaryButton>
                                                     <DangerButton
                                                         onClick={(e) =>
