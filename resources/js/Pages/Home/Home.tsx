@@ -20,7 +20,6 @@ export default function Home({ auth, news }: PageProps) {
                     }}
                 ></section>
                 <NewsHome news={news.data} meta={news.meta} />
-                <div className="mt-64"></div>
                 <Footer />
             </main>
         </>
