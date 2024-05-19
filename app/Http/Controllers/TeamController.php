@@ -41,12 +41,14 @@ class TeamController extends Controller
         $validated = $request->validated();
         // dd($validated);
         // Handle the image upload if provided
-        if ($request->hasFile('image_url')) {
-            $validated['image_url'] = $request->file('team_images')->store('team_images', 'public');
+
+        // dd($validated['team_logo']);
+        if ($request->hasFile('team_logo')) {
+            $validated['team_logo'] = $request->file('team_logo')->store('team_images', 'public');
         }
         $team = Team::create($validated);
 
-        return to_route('team.index')->with('success');
+        return to_route('team.index')->with($team->name);
     }
 
     /**

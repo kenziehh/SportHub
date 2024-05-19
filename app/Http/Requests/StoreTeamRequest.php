@@ -24,7 +24,7 @@ class StoreTeamRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'country' => ['required', 'string'],
-            'team_logo' => ['required', 'image'],
+            'team_logo' => ['nullable', 'image'],
             'sport_category' => ['required', 'string'],
             'station' => ['required', 'string'],
         ];
