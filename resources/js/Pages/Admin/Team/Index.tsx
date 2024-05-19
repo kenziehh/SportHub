@@ -11,7 +11,7 @@ export default function TeamDashboard({ auth, teams }: PageProps) {
         <Authenticated user={auth.user}>
             <main className="container">
                 <section className="flex justify-between py-10 items-center">
-                    <h2 className="text-4xl">News</h2>
+                    <h2 className="text-4xl">Team</h2>
                     <SecondaryButton>
                         <Link href={route("team.create")} className="">
                             Create
@@ -63,7 +63,7 @@ export default function TeamDashboard({ auth, teams }: PageProps) {
                                                 src={
                                                     teamData.team_logo
                                                         ? teamData.team_logo.startsWith(
-                                                              "teams_images"
+                                                              "team_images"
                                                           )
                                                             ? `/storage/${teamData.team_logo}`
                                                             : teamData.team_logo

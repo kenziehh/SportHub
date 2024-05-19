@@ -14,3 +14,11 @@ export interface AthleteForm {
     country: string;
     sport_category: string;
 }
+
+export interface TeamForm {
+    name: string;
+    team_logo: File | null;
+    country: string;
+    sport_category: string;
+    station: string;
+}
