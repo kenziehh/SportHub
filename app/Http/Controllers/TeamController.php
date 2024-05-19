@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateTeamRequest;
 use App\Http\Resources\AthleteResource;
 use App\Http\Resources\TeamResource;
 use App\Models\Athlete;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class TeamController extends Controller
@@ -64,7 +65,9 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-        //
+        return Inertia('Admin/Team/Edit', [
+            'teamData' => new TeamResource($team),
+        ]);
     }
 
     /**
@@ -72,7 +75,22 @@ class TeamController extends Controller
      */
     public function update(UpdateTeamRequest $request, Team $team)
     {
-        //
+        $validated = $request->validated();
+        // dd($validated);
+        // Handle the image upload if provided
+        if ($request->hasFile('team_logo')) {
+            // Delete the old image if it exists
+            if ($team->team_logo) {
+                Storage::disk('public')->delete($team->team_logo);
+            }
+
+            // Store the new image and update the image_url in the validated data
+            $validated['team_logo'] = $request->file('team_logo')->store('team_images', 'public');
+        }
+
+        // Update the team with the validated data
+        $team->update($validated);
+        return to_route('team.index')->with('success', 'team "' . $team->name . '" was updated successfully.');
     }
 
     /**
