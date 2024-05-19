@@ -88,7 +88,7 @@ class AthleteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Athlete $athlete)
+    public function destroy(Team $team, Athlete $athlete)
     {
         $athlete_image_path = 'athlete_images/' . $athlete->image_url;
 
@@ -100,7 +100,6 @@ class AthleteController extends Controller
             Storage::disk('public')->delete($athlete_image_path);
         }
 
-        return to_route('news.index')
-            ->with('success', "News '{$athlete->name}' was deleted");
+        return redirect()->route('team.athletes', $team->id)->with('success', 'Athlete delete successfully');
     }
 }

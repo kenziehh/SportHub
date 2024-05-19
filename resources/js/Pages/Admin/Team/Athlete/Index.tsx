@@ -22,7 +22,7 @@ export default function TeamAthlete({ auth, teamData, athletes }: PageProps) {
         <Authenticated user={auth.user}>
             <main className="container">
                 <TeamData teamData={teamData.data} />
-                <section className="flex justify-between dpy-10 items-center">
+                <section className="flex justify-between py-10 items-center">
                     <h2 className="text-4xl">Team Athlete</h2>
                     <SecondaryButton>
                         <Link
