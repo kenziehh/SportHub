@@ -14,13 +14,7 @@ export default {
         extend: {
             container: {
                 center: true,
-                padding: {
-                    DEFAULT: "2rem",
-                    sm: "2rem",
-                    lg: "5rem",
-                    xl: "5rem",
-                    "2xl": "6rem",
-                },
+                padding: "16px",
             },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
@@ -28,6 +22,8 @@ export default {
             colors: {
                 redLabel: "#FF1F57",
                 lightBlack: "#353333",
+                grey: "#A7A7A7",
+                darkGrey:"#463E42",
             },
         },
     },

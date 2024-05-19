@@ -5,6 +5,7 @@ import { NewsResponse } from "@/types/responseData";
 import Pagination from "@/Components/pagination";
 import { truncateText } from "@/Utils/truncateText";
 import NewsHome from "./Partials/NewsHome";
+import Footer from "@/Components/footer";
 export default function Home({ auth, news }: PageProps) {
     return (
         <>
@@ -19,6 +20,8 @@ export default function Home({ auth, news }: PageProps) {
                     }}
                 ></section>
                 <NewsHome news={news.data} meta={news.meta} />
+                <div className="mt-64"></div>
+                <Footer />
             </main>
         </>
     );
