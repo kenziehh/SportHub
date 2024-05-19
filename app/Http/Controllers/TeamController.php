@@ -29,7 +29,7 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia('Admin/Team/Create');
     }
 
     /**
@@ -37,7 +37,16 @@ class TeamController extends Controller
      */
     public function store(StoreTeamRequest $request)
     {
-        //
+        // dd($request);
+        $validated = $request->validated();
+        // dd($validated);
+        // Handle the image upload if provided
+        if ($request->hasFile('image_url')) {
+            $validated['image_url'] = $request->file('team_images')->store('team_images', 'public');
+        }
+        $team = Team::create($validated);
+
+        return to_route('team.index')->with('success');
     }
 
     /**
