@@ -12,9 +12,11 @@ Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
+        'news' => Route::has('news.invoke')
     ]);
 });
-Route::get('/news', [NewsController::class, '__invoke']);
+
+Route::get('/', [NewsController::class, '__invoke'])->name('home');
 Route::get('/match', [SportMatchController::class, '__invoke']);
 
 Route::get('/dashboard', function () {

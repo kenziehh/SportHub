@@ -6,11 +6,11 @@ import { Link as InertiaLink } from "@inertiajs/react";
 
 const Navbar = ({ authenticated }: { authenticated: User }) => {
     return (
-        <nav className="container flex items-center justify-between">
+        <nav className="container flex items-center justify-between py-14 mb-2">
             <InertiaLink href="/" className="font-bold text-3xl">
                 <img src="/assets/logo-nav.png" alt="" />
             </InertiaLink>
-            <div className="flex gap-8 items-center">
+            <div className="hidden md:flex gap-8 items-center">
                 <Link
                     to="news-section"
                     className="hover:text-blue-300"
@@ -85,19 +85,19 @@ const Navbar = ({ authenticated }: { authenticated: User }) => {
                 // >
                 // </Link>
                 <>
-                    <div>
+                    <div className="flex items-center gap-2">
                         <InertiaLink
                             href={route("login")}
-                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                            className="rounded-3xl py-[14px] px-10 bg-lightBlack text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                         >
                             Log in
                         </InertiaLink>
-                        <InertiaLink
+                        {/* <InertiaLink
                             href={route("register")}
-                            className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                            className="rounded-3xl py-[14px] px-10 bg-lightBlack text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                         >
                             Register
-                        </InertiaLink>
+                        </InertiaLink> */}
                     </div>
                 </>
             )}

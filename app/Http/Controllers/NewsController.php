@@ -27,9 +27,8 @@ class NewsController extends Controller
 
     public function __invoke()
     {
-        $query = News::query();
-        $news = $query->paginate(20);
-        return Inertia('News/NewsPage', [
+        $news = News::latest()->paginate(6);
+        return Inertia('Welcome', [
             "news" => NewsResource::collection($news)
         ]);
     }
