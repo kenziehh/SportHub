@@ -16,6 +16,7 @@ export default {
                 center: true,
                 padding: "16px",
             },
+
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
@@ -23,7 +24,7 @@ export default {
                 redLabel: "#FF1F57",
                 lightBlack: "#353333",
                 grey: "#A7A7A7",
-                darkGrey:"#463E42",
+                darkGrey: "#463E42",
             },
         },
     },

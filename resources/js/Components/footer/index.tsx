@@ -7,7 +7,7 @@ const Footer = () => {
                 backgroundImage: "url(/assets/footer.svg)",
                 backgroundRepeat: "no-repeat",
             }}
-            className="w-full h-full px-10 md:px-20 md:pb-[60px] py-32 md:pt-[132px]"
+            className="container w-full h-full px-10 md:px-20 md:pb-[60px] py-32 md:pt-[132px]"
         >
             <div className="flex md:flex-row justify-between items-center md:justify-between md:items-center left-5 md:left-20 top-40">
                 <div className="flex flex-col gap-6 self-end md:self-start ">

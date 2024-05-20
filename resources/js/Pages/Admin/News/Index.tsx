@@ -10,7 +10,7 @@ import { Link, router } from "@inertiajs/react";
 const NewsDashboard = ({ auth, news }: PageProps) => {
     console.log(news);
     const deleteNews = (news: NewsResponse) => {
-        router.delete(route("news.destroy", news.id));
+        router.delete(route("news.destroy", { news: news.id }));
     };
     return (
         <Authenticated user={auth.user}>

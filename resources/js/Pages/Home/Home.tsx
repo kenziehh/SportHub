@@ -4,8 +4,10 @@ import Navbar from "@/Components/navbar";
 import { NewsResponse } from "@/types/responseData";
 import Pagination from "@/Components/pagination";
 import { truncateText } from "@/Utils/truncateText";
-import NewsHome from "./Partials/NewsHome";
+import NewsHome from "./Partials/NewsSection";
 import Footer from "@/Components/footer";
+import YoutubePlayer from "@/Components/youtube";
+import HighlightSection from "./Partials/HighlightSection";
 export default function Home({ auth, news }: PageProps) {
     return (
         <>
@@ -18,10 +20,16 @@ export default function Home({ auth, news }: PageProps) {
                         backgroundImage: "url(/assets/hero.svg)",
                         backgroundRepeat: "no-repeat",
                     }}
-                ></section>
+                >
+                    {/* <h1 className="text-6xl md:text-[40px] xl:text-[70px] max-w-[870px]">
+                        Will Eden Hazard Leave Chealsea if their transfer ban
+                        gets upheld?
+                    </h1> */}
+                </section>
                 <NewsHome news={news.data} meta={news.meta} />
-                <Footer />
             </main>
+            <HighlightSection />
+            <Footer />
         </>
     );
 }

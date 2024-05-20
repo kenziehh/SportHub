@@ -3,7 +3,7 @@ import { Link } from "@inertiajs/react";
 
 const Pagination = ({ links }: { links: PaginationLink[] }) => {
     return (
-        <nav className="text-center mt-4 text-black">
+        <nav className="text-center mt-4 text-black py-10">
             {links.map((link: PaginationLink) => (
                 <Link
                     preserveScroll

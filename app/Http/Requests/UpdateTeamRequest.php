@@ -24,7 +24,7 @@ class UpdateTeamRequest extends FormRequest
         return [
             'name' => ['string'],
             'country' => ['string'],
-            'team_logo' => ['nullable', 'image'],
+            'team_logo' => ['image'],
             'sport_category' => ['string'],
             'station' => ['string'],
         ];
