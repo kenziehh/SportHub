@@ -1,6 +1,5 @@
 import Pagination from "@/Components/pagination";
 import PrimaryButton from "@/Components/PrimaryButton";
-import SecondaryButton from "@/Components/SecondaryButton";
 import { Meta, NewsResponse } from "@/types/responseData";
 import { truncateText } from "@/Utils/truncateText";
 import { Link } from "@inertiajs/react";
@@ -8,10 +7,10 @@ import { Link } from "@inertiajs/react";
 const NewsHome = ({ news, meta }: { news: NewsResponse[]; meta: Meta }) => {
     return (
         <>
-            <section className="py-10 flex fap-6 md:gap=0 justify-between">
+            <section className="py-10 flex gap-6 md:gap-0 justify-between">
                 <h2 className="text-5xl font-semibold">News</h2>
                 <PrimaryButton>
-                    <Link href="/news">See All</Link>
+                    <Link href="/news">See more</Link>
                 </PrimaryButton>
             </section>
             <section className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-10">
