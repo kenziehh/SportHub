@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::resource("admin/team", TeamController::class);
     Route::resource("admin/team/{team}/athlete", AthleteController::class);
     Route::get('admin/team/{team}/athlete', [TeamController::class, 'getTeamAthletes'])->name('team.athletes');
+    Route::get('/news', [NewsController::class, 'getAllNews'])->name('news.page');
 });
 
 

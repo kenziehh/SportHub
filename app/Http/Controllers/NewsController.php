@@ -32,6 +32,15 @@ class NewsController extends Controller
             "news" => NewsResource::collection($news)
         ]);
     }
+
+    public function getAllNews()
+    {
+        $query = News::query();
+        $news = $query->paginate(12);
+        return Inertia('News/Index', [
+            "news" => NewsResource::collection($news)
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      */
