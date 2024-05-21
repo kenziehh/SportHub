@@ -7,3 +7,17 @@
     font-family: "Plus Jakarta Sans", sans-serif;
 }
 
+.clip-path-hover:hover {
+    clip-path: polygon(
+        100% 73%,
+        60% 73%,
+        60% 100%,
+        0 100%,
+        0% 0%,
+        100% 0%,
+        100% 0%,
+        0% 0%,
+        0% 0%,
+        100% 0%
+    );
+}

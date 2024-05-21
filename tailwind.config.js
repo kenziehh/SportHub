@@ -14,7 +14,13 @@ export default {
         extend: {
             container: {
                 center: true,
-                padding: "16px",
+                padding: {
+                    DEFAULT: "2rem",
+                    sm: "2rem",
+                    lg: "5rem",
+                    xl: "5rem",
+                    "2xl": "6rem",
+                },
             },
 
             fontFamily: {

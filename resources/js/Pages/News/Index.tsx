@@ -1,11 +1,9 @@
+import PolygonButton from "@/Components/button/polygonButton";
 import NewsCard from "@/Components/card/newsCard";
-import Navbar from "@/Components/navbar";
 import Pagination from "@/Components/pagination";
-import Authenticated from "@/Layouts/AuthenticatedLayout";
 import Layout from "@/Layouts/Layout";
 import { PageProps } from "@/types";
 import { NewsResponse } from "@/types/responseData";
-import React from "react";
 
 export default function NewsPage({ auth, news }: PageProps) {
     console.log(news);
@@ -25,7 +23,9 @@ export default function NewsPage({ auth, news }: PageProps) {
                 </h2>
             </section>
             <section className="py-20">
-                <h2>News</h2>
+                <h2 className="text-[32px] md:text-[56px] font-semibold">
+                    News
+                </h2>
             </section>
             <section className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-10">
                 {news.data.map((newsData: NewsResponse) => {
