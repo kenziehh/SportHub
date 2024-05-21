@@ -1,6 +1,5 @@
 import { PageProps, User } from "@/types";
 import Dropdown from "../Dropdown";
-import { Link } from "react-scroll";
 
 import { Link as InertiaLink } from "@inertiajs/react";
 
@@ -11,30 +10,9 @@ const Navbar = ({ authenticated }: { authenticated: User }) => {
                 <img src="/assets/logo-nav.png" alt="" />
             </InertiaLink>
             <div className="hidden md:flex gap-8 items-center">
-                <Link
-                    to="news-section"
-                    className="hover:text-blue-300"
-                    smooth={true}
-                    duration={500}
-                >
-                    News
-                </Link>
-                <Link
-                    to="match-section"
-                    className="hover:text-blue-300"
-                    smooth={true}
-                    duration={500}
-                >
-                    Match
-                </Link>
-                <Link
-                    to="live-section"
-                    className="hover:text-blue-300"
-                    smooth={true}
-                    duration={500}
-                >
-                    Live
-                </Link>
+                <InertiaLink href="/">Home</InertiaLink>
+                <InertiaLink href="/news">News</InertiaLink>
+                <InertiaLink href="/match">Match</InertiaLink>
             </div>
             {authenticated ? (
                 <Dropdown>
