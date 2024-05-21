@@ -22,4 +22,14 @@ class Team extends Model
     {
         return $this->hasMany(Athlete::class);
     }
+
+    public function homeMatches()
+    {
+        return $this->hasMany(SportMatch::class, 'home_team_id');
+    }
+
+    public function awayMatches()
+    {
+        return $this->hasMany(SportMatch::class, 'away_team_id');
+    }
 }
