@@ -16,7 +16,7 @@ const HighlightSection = () => {
         setHoveredIndex(null);
     };
     return (
-        <section className="container py-20 flex-col gap-14">
+        <section className="py-20 flex-col gap-14">
             <div className="flex justify-between items-end font-semibold">
                 <h1 className="text-3xl md:text-6xl">Highlights</h1>
                 <PrimaryButton>

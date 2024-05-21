@@ -13,6 +13,7 @@ const Navbar = ({ authenticated }: { authenticated: User }) => {
                 <InertiaLink href="/">Home</InertiaLink>
                 <InertiaLink href="/news">News</InertiaLink>
                 <InertiaLink href="/match">Match</InertiaLink>
+                <InertiaLink href="/highlight">Highlight</InertiaLink>
             </div>
             {authenticated ? (
                 <Dropdown>
