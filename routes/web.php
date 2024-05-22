@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AthleteController;
+use App\Http\Controllers\HighlightController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SportMatchController;
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/team/{team}/athlete', [TeamController::class, 'getTeamAthletes'])->name('team.athletes');
     Route::get('/news', [NewsController::class, 'getAllNews'])->name('news.page');
     Route::get('/match', [SportMatchController::class, '__invoke']);
+    Route::get('/highlight', [HighlightController::class, '__invoke'])->name('highlight.page');
 });
 
 

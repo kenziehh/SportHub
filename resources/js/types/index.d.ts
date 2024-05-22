@@ -1,5 +1,6 @@
 import {
     AthleteResponse,
+    HighlightResponse,
     MatchResponse,
     Meta,
     NewsResponse,
@@ -31,6 +32,7 @@ export type PageProps<
     //     data: MatchResponse[];
     //     // meta: Meta;
     // };
+    matchData: MatchResponse;
     teams: {
         data: TeamResponse[];
         meta: Meta;
@@ -44,5 +46,9 @@ export type PageProps<
     };
     athleteData: {
         data: AthleteResponse;
+    };
+    highlight: {
+        data: HighlightResponse[];
+        meta: Meta;
     };
 };

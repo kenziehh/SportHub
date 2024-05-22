@@ -35,17 +35,6 @@ export interface AthleteResponse {
 }
 
 export interface MatchResponse {
-    // id: number;
-    // home_team: string;
-    // home_score: number;
-    // home_team_logo: string;
-    // away_team: string;
-    // away_score: number;
-    // away_team_logo: string;
-    // place: string;
-    // category: string;
-    // tournament_name: string;
-    // highlights: string[];
     away_score: 1;
     away_team: string;
     away_team_logo: string;
@@ -57,4 +46,11 @@ export interface MatchResponse {
     id: number;
     place: string;
     tournament_name: string;
+}
+
+export interface HighlightResponse {
+    id: number;
+    sport_match_id: number;
+    description: string;
+    video_url: string;
 }
