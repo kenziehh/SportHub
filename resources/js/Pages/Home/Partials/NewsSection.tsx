@@ -1,6 +1,6 @@
 import NewsCard from "@/Components/card/newsCard";
 import Pagination from "@/Components/pagination";
-import PrimaryButton from "@/Components/PrimaryButton";
+import PrimaryButton from "@/Components/button/primary";
 import { Meta, NewsResponse } from "@/types/responseData";
 import { truncateText } from "@/Utils/truncateText";
 import { Link } from "@inertiajs/react";

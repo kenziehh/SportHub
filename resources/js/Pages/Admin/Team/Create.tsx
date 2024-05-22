@@ -1,7 +1,7 @@
 import DropdownInput from "@/Components/dropdownInput";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
-import SecondaryButton from "@/Components/SecondaryButton";
+import SecondaryButton from "@/Components/button/secondary";
 import TextInput from "@/Components/TextInput";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";

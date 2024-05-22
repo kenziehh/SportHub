@@ -2,10 +2,10 @@ import { useEffect, FormEventHandler } from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
-import PrimaryButton from "@/Components/PrimaryButton";
+import PrimaryButton from "@/Components/button/primary";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
-import SecondaryButton from "@/Components/SecondaryButton";
+import SecondaryButton from "@/Components/button/secondary";
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({

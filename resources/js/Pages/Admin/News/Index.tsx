@@ -1,7 +1,7 @@
-import DangerButton from "@/Components/DangerButton";
+import DangerButton from "@/Components/button/danger";
 import Pagination from "@/Components/pagination";
-import PrimaryButton from "@/Components/PrimaryButton";
-import SecondaryButton from "@/Components/SecondaryButton";
+import PrimaryButton from "@/Components/button/primary";
+import SecondaryButton from "@/Components/button/secondary";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { NewsResponse } from "@/types/responseData";

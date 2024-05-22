@@ -1,7 +1,7 @@
-import DangerButton from "@/Components/DangerButton";
+import DangerButton from "@/Components/button/danger";
 import Pagination from "@/Components/pagination";
-import PrimaryButton from "@/Components/PrimaryButton";
-import SecondaryButton from "@/Components/SecondaryButton";
+import PrimaryButton from "@/Components/button/primary";
+import SecondaryButton from "@/Components/button/secondary";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { MatchResponse } from "@/types/responseData";
@@ -35,35 +35,40 @@ const MatchDashboard = ({ auth, match }: PageProps) => {
                 </section>
                 <section className="overflow-x-auto">
                     <table className="w-full">
-                        <th className="text-center px-2 py-3 border-2">
-                            Home Team
-                        </th>
-                        <th className="text-center px-2 py-3 border-2">
-                            Home Score
-                        </th>
-                        <th className="text-center px-2 py-3 border-2">
-                            Home Image
-                        </th>
-                        <th className="text-center px-2 py-3 border-2">
-                            Away Team
-                        </th>
-                        <th className="text-center px-2 py-3 border-2">
-                            Away Score
-                        </th>
-                        <th className="text-center px-2 py-3 border-2">
-                            Away Image
-                        </th>
-                        <th className="text-center px-2 py-3 border-2">
-                            Place
-                        </th>
-                        <th className="text-center px-2 py-3 border-2">
-                            Category
-                        </th>
+                        <thead>
+                            <tr>
+                                <th className="text-center px-2 py-3 border-2">
+                                    Home Team
+                                </th>
+                                <th className="text-center px-2 py-3 border-2">
+                                    Home Score
+                                </th>
+                                <th className="text-center px-2 py-3 border-2">
+                                    Home Image
+                                </th>
+                                <th className="text-center px-2 py-3 border-2">
+                                    Away Team
+                                </th>
+                                <th className="text-center px-2 py-3 border-2">
+                                    Away Score
+                                </th>
+                                <th className="text-center px-2 py-3 border-2">
+                                    Away Image
+                                </th>
+                                <th className="text-center px-2 py-3 border-2">
+                                    Place
+                                </th>
+                                <th className="text-center px-2 py-3 border-2">
+                                    Category
+                                </th>
 
-                        <th className="text-center px-2 py-3 border-2">
-                            Action
-                        </th>
-                        {match.data.map((matchData: MatchResponse) => {
+                                <th className="text-center px-2 py-3 border-2">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        {match.map((matchData: MatchResponse) => {
+                            console.log(matchData);
                             return (
                                 <tr key={matchData.id}>
                                     <td className="px-2 py-3 border-2 max-w-sm md:text-justify">
@@ -74,7 +79,7 @@ const MatchDashboard = ({ auth, match }: PageProps) => {
                                     </td>
                                     <td className="px-2 py-3 border-2">
                                         <img
-                                            src={matchData.home_image}
+                                            src={matchData.home_team_logo}
                                             alt=""
                                             className="max-w-24 max-h-24 md:max-w-48 md:max-h-48"
                                         />
@@ -87,7 +92,7 @@ const MatchDashboard = ({ auth, match }: PageProps) => {
                                     </td>
                                     <td className="px-2 py-3 border-2">
                                         <img
-                                            src={matchData.away_image}
+                                            src={matchData.away_team_logo}
                                             alt=""
                                             className="max-w-24 max-h-24 md:max-w-48 md:max-h-48"
                                         />
@@ -115,7 +120,7 @@ const MatchDashboard = ({ auth, match }: PageProps) => {
                         })}
                     </table>
                 </section>
-                <Pagination links={match.meta.links} />
+                {/* <Pagination links={match.meta.links} /> */}
             </main>
         </Authenticated>
     );

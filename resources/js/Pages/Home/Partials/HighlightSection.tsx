@@ -1,4 +1,4 @@
-import PrimaryButton from "@/Components/PrimaryButton";
+import PrimaryButton from "@/Components/button/primary";
 import YoutubePlayer from "@/Components/youtube";
 import { Link } from "@inertiajs/react";
 import { useState } from "react";

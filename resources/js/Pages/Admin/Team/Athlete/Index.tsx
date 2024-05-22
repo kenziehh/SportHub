@@ -1,11 +1,11 @@
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import TeamData from "./Partials/TeamData";
-import PrimaryButton from "@/Components/PrimaryButton";
+import PrimaryButton from "@/Components/button/primary";
 import { Link, router } from "@inertiajs/react";
-import DangerButton from "@/Components/DangerButton";
+import DangerButton from "@/Components/button/danger";
 import { AthleteResponse } from "@/types/responseData";
-import SecondaryButton from "@/Components/SecondaryButton";
+import SecondaryButton from "@/Components/button/secondary";
 
 export default function TeamAthlete({ auth, teamData, athletes }: PageProps) {
     console.log(athletes);
