@@ -1,7 +1,7 @@
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
+import InputError from "@/Components/input/error";
+import InputLabel from "@/Components/input/label";
 import SecondaryButton from "@/Components/button/secondary";
-import TextInput from "@/Components/TextInput";
+import TextInput from "@/Components/input";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { NewsForm } from "@/types/formData";

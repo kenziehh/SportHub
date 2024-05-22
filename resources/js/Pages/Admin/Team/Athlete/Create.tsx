@@ -1,14 +1,14 @@
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
+import InputError from "@/Components/input/error";
+import InputLabel from "@/Components/input/label";
 import SecondaryButton from "@/Components/button/secondary";
-import TextInput from "@/Components/TextInput";
+import TextInput from "@/Components/input";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
 import { PageProps } from "@/types";
 import { AthleteForm } from "@/types/formData";
 import { useForm } from "@inertiajs/react";
 import { FormEvent } from "react";
 import { newsCategory } from "@/Utils/newsCategory";
-import DropdownInput from "@/Components/dropdownInput";
+import DropdownInput from "@/Components/input/dropdown";
 
 const Create = ({ auth, teamData }: PageProps) => {
     console.log(teamData);
