@@ -27,10 +27,10 @@ export type PageProps<
     newsData: {
         data: NewsResponse;
     };
-    match: {
-        data: MatchResponse[];
-        meta: Meta;
-    };
+    match: MatchResponse[];
+    //     data: MatchResponse[];
+    //     // meta: Meta;
+    // };
     teams: {
         data: TeamResponse[];
         meta: Meta;

@@ -17,12 +17,35 @@ class SportMatchController extends Controller
      */
     public function index()
     {
-        $query = SportMatch::query();
-        $sportMatch = $query->paginate(20);
-        return Inertia('Admin/Match/Index', [
-            "match" => SportMatchResource::collection($sportMatch)
+
+        // Retrieve all sport matches with related data
+        $matches = SportMatch::with(['homeTeam', 'awayTeam', 'highlights'])->get();
+
+        // Map the data to the desired format
+        $data = $matches->map(function ($match) {
+            return [
+                'id' => $match->id,
+                'home_team' => $match->homeTeam->name,
+                'home_score' => $match->home_score,
+                'home_team_logo' => $match->homeTeam->team_logo,
+                'away_team' => $match->awayTeam->name,
+                'away_score' => $match->away_score,
+                'away_team_logo' => $match->awayTeam->team_logo,
+                'place' => $match->homeTeam->station, // Assuming 'station' is the place
+                'category' => $match->category,
+                'tournament_name' => $match->tournament_name,
+                'highlights' => $match->highlights->map(function ($highlight) {
+                    return $highlight->video_url;
+                })->toArray()
+            ];
+        });
+        // return response()->json($data[0]);
+        // Return the data to the Inertia view
+        return Inertia::render('Admin/Match/Index', [
+            'match' => $data
         ]);
     }
+
 
     public function __invoke()
     {
@@ -56,6 +79,8 @@ class SportMatchController extends Controller
     {
         //
     }
+
+
 
     /**
      * Show the form for editing the specified resource.

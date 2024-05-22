@@ -15,18 +15,6 @@ export interface PaginationLink {
 export interface Meta {
     links: PaginationLink[];
 }
-export interface MatchResponse {
-    id: number;
-    away_image: string;
-    away_score: number;
-    away_team: string;
-    category: string;
-    home_image: string;
-    home_score: number;
-    home_team: string;
-    match_datetime: string;
-    place: string;
-}
 
 export interface TeamResponse {
     id: number;
@@ -44,4 +32,29 @@ export interface AthleteResponse {
     team_id: number;
     country: string;
     sport_category: string;
+}
+
+export interface MatchResponse {
+    // id: number;
+    // home_team: string;
+    // home_score: number;
+    // home_team_logo: string;
+    // away_team: string;
+    // away_score: number;
+    // away_team_logo: string;
+    // place: string;
+    // category: string;
+    // tournament_name: string;
+    // highlights: string[];
+    away_score: 1;
+    away_team: string;
+    away_team_logo: string;
+    category: string;
+    highlights: string[];
+    home_score: number;
+    home_team: string;
+    home_team_logo: string;
+    id: number;
+    place: string;
+    tournament_name: string;
 }
