@@ -1,10 +1,15 @@
 import PolygonButton from "@/Components/button/polygonButton";
 import { NewsResponse } from "@/types/responseData";
 import { truncateText } from "@/Utils/truncateText";
+import { Link } from "@inertiajs/react";
 
 const NewsCard = ({ newsData }: { newsData: NewsResponse }) => {
     return (
-        <div className="flex flex-col gap-6" key={newsData.id}>
+        <Link
+            className="flex flex-col gap-6"
+            key={newsData.id}
+            href={route("news.show", newsData.id)}
+        >
             <div className="relative group">
                 <img
                     src={
@@ -20,7 +25,10 @@ const NewsCard = ({ newsData }: { newsData: NewsResponse }) => {
                 {/* <button className="absolute bottom-4 right-4 bg-red-500 text-white px-4 py-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     Click Me
                 </button> */}
-                <PolygonButton className="absolute bottom-0 -right-12 text-white px-4 py-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <PolygonButton
+                    linkTo={route("news.show", newsData.id)}
+                    className="absolute bottom-0 -right-12 text-white px-4 py-2 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+                />
             </div>
 
             <div className="flex flex-col gap-4">
@@ -39,7 +47,7 @@ const NewsCard = ({ newsData }: { newsData: NewsResponse }) => {
                     </h6>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 

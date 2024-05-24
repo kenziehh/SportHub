@@ -71,8 +71,12 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        //
+        return inertia('News/Show', [
+            'newsData' => new NewsResource($news),
+        ]);
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
