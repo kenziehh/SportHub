@@ -1,5 +1,4 @@
 import DangerButton from "@/Components/button/danger";
-import Pagination from "@/Components/pagination";
 import PrimaryButton from "@/Components/button/primary";
 import SecondaryButton from "@/Components/button/secondary";
 import Authenticated from "@/Layouts/AuthenticatedLayout";
@@ -61,7 +60,9 @@ const MatchDashboard = ({ auth, match }: PageProps) => {
                                 <th className="text-center px-2 py-3 border-2">
                                     Category
                                 </th>
-
+                                <th className="text-center px-2 py-3 border-2">
+                                    Manage Highlight
+                                </th>
                                 <th className="text-center px-2 py-3 border-2">
                                     Action
                                 </th>
@@ -103,6 +104,19 @@ const MatchDashboard = ({ auth, match }: PageProps) => {
                                     <td className="px-2 py-3 border-2 max-w-6xl text-justify">
                                         {matchData.category}
                                     </td>
+                                    <td className="px-2 py-3 border-2 max-w-6xl text-justify">
+                                        <Link
+                                            href={route(
+                                                "highlight.index",
+                                                matchData.id
+                                            )}
+                                        >
+                                            <PrimaryButton>
+                                                Manage Highlight
+                                            </PrimaryButton>
+                                        </Link>
+                                    </td>
+
                                     <td className="px-2 py-3 border-2 text-justify">
                                         <div className="inline-flex flex-col gap-2">
                                             <PrimaryButton>Edit</PrimaryButton>
