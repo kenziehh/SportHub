@@ -16,7 +16,7 @@ class HighlightResource extends JsonResource
     {
         return  [
             'id' => $this->id,
-            'sport_match_id' => $this->title,
+            'sport_match_id' => $this->sport_match_id,
             'description' => $this->description,
             'video_url' => $this->video_url,
         ];

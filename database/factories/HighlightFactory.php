@@ -17,7 +17,7 @@ class HighlightFactory extends Factory
     public function definition(): array
     {
         return [
-            'sport_match_id' => 1,
+            'sport_match_id' => random_int(1, 10),
             'description' => fake()->sentence(),
             'video_url' => fake()->url(),
         ];
