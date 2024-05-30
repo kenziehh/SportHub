@@ -1,14 +1,28 @@
+import MatchCard from "@/Components/card/match";
 import Navbar from "@/Components/navbar";
+import Layout from "@/Layouts/Layout";
 import { PageProps } from "@/types";
+import MatchSection from "./Partials/MatchSection";
 
-import React from "react";
-
-const MatchPage = ({ auth, match }: PageProps) => {
-    console.log(match);
+const MatchPage = ({ auth, match, pagination }: PageProps) => {
     return (
-        <div>
-            <Navbar user={auth.user} />
-        </div>
+        <Layout user={auth.user}>
+            <img
+                src="/assets/highlight-hero.jpg"
+                className="w-full h-[40vh] md:h-full"
+            />
+            <MatchSection
+                matches={match}
+                matchType="football"
+                pagination={pagination}
+            />
+
+            <MatchSection
+                matches={match}
+                matchType="basketball"
+                pagination={pagination}
+            />
+        </Layout>
     );
 };
 
