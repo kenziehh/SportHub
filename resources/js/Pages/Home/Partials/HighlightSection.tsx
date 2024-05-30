@@ -6,12 +6,17 @@ import { useMediaQuery } from "react-responsive";
 
 const HighlightSection = () => {
     const isMobile = useMediaQuery({ maxWidth: 767 });
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const [hoveredIndex, setHoveredIndex] = useState<string | null>(null);
 
-    const handleMouseEnter = (index: number) => {
+    const handleMouseEnter = (index: string) => {
         setHoveredIndex(index);
     };
-
+    const videoIds = [
+        "OelxFPuw2sI",
+        "lt-ViU17RMg",
+        "LanA0vxA_iU",
+        "RZauO1scESQ",
+    ];
     const handleMouseLeave = () => {
         setHoveredIndex(null);
     };
@@ -24,21 +29,21 @@ const HighlightSection = () => {
                 </PrimaryButton>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 justify-between gap-6 mt-6 md:mt-14">
-                {[1, 2, 3, 4].map((index) => (
+                {videoIds.map((videoId) => (
                     <div
-                        key={index}
+                        key={videoId}
                         className={`flex justify-center items-center bg-gray-300 text-2xl transition-all duration-300 rounded-[32px] object-fill ${
-                            hoveredIndex === index ? "col-span-4 z-10" : ""
+                            hoveredIndex === videoId ? "col-span-4 z-10" : ""
                         } ${
-                            hoveredIndex !== null && hoveredIndex !== index
+                            hoveredIndex !== null && hoveredIndex !== videoId
                                 ? "hidden"
                                 : "block"
                         }`}
-                        onMouseEnter={() => handleMouseEnter(index)}
+                        onMouseEnter={() => handleMouseEnter(videoId)}
                         onMouseLeave={handleMouseLeave}
                     >
                         <YoutubePlayer
-                            videoId="OelxFPuw2sI"
+                            videoId={videoId}
                             height={isMobile ? "300px" : "700px"}
                             className="w-full rounded-[32px]"
                         />
