@@ -18,6 +18,7 @@ class HighlightFactory extends Factory
     {
         return [
             'sport_match_id' => random_int(1, 10),
+            'title' => fake()->sentence(),
             'description' => fake()->sentence(),
             'video_url' => fake()->url(),
         ];

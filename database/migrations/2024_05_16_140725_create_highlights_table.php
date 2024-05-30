@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('highlights', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('sport_match_id');
+            $table->string('title');
             $table->text('description');
             $table->string('video_url');
             $table->timestamps();

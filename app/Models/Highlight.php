@@ -10,6 +10,7 @@ class Highlight extends Model
     use HasFactory;
 
     protected $fillable =[
+        'title',
         'sport_match_id',
         'description',
         'video_url',

@@ -50,6 +50,7 @@ export interface MatchResponse {
 
 export interface HighlightResponse {
     id: number;
+    title: string;
     sport_match_id: number;
     description: string;
     video_url: string;
