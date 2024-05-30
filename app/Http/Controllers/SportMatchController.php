@@ -19,12 +19,12 @@ class SportMatchController extends Controller
      */
     public function index()
     {
+        // Retrieve all sport matches with related data, paginated with 12 items per page
+        $matches = SportMatch::with(['homeTeam', 'awayTeam', 'highlights'])->paginate(10);
 
-        // Retrieve all sport matches with related data
-        $matches = SportMatch::with(['homeTeam', 'awayTeam', 'highlights'])->get();
+        $mappedData = $matches->items();
 
-        // Map the data to the desired format
-        $data = $matches->map(function ($match) {
+        $data = array_map(function ($match) {
             return [
                 'id' => $match->id,
                 'home_team' => $match->homeTeam->name,
@@ -40,22 +40,27 @@ class SportMatchController extends Controller
                     return $highlight->video_url;
                 })->toArray()
             ];
-        });
-        // return response()->json($data[0]);
-        // Return the data to the Inertia view
+        }, $mappedData);
+
+        // Return the data to the Inertia view with pagination info
         return Inertia::render('Admin/Match/Index', [
-            'match' => $data
+            'match' => $data,
+            'pagination' => [
+                'next_url' => $matches->nextPageUrl(),
+                'prev_url' => $matches->previousPageUrl(),
+            ],
         ]);
     }
 
 
     public function __invoke()
     {
-        // Retrieve all sport matches with related data
-        $matches = SportMatch::with(['homeTeam', 'awayTeam', 'highlights'])->get();
+        // Retrieve all sport matches with related data, paginated with 12 items per page
+        $matches = SportMatch::with(['homeTeam', 'awayTeam', 'highlights'])->paginate(12);
 
-        // Map the data to the desired format
-        $data = $matches->map(function ($match) {
+        $mappedData = $matches->items();
+
+        $data = array_map(function ($match) {
             return [
                 'id' => $match->id,
                 'home_team' => $match->homeTeam->name,
@@ -71,11 +76,15 @@ class SportMatchController extends Controller
                     return $highlight->video_url;
                 })->toArray()
             ];
-        });
-        // return response()->json($data[0]);
-        // Return the data to the Inertia view
+        }, $mappedData);
+
+        // Return the data to the Inertia view with pagination info
         return Inertia::render('Match/MatchPage', [
-            'match' => $data
+            'match' => $data,
+            'pagination' => [
+                'next_url' => $matches->nextPageUrl(),
+                'prev_url' => $matches->previousPageUrl(),
+            ],
         ]);
     }
 
@@ -146,7 +155,7 @@ class SportMatchController extends Controller
         // dd($match);
         $highlights = $match->highlights()->get();
         return Inertia::render('Admin/Match/Highlight/Index', [
-            'highlight' => HighlightResource::collection($highlights)       
+            'highlight' => HighlightResource::collection($highlights)
         ]);
     }
 }

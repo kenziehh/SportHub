@@ -51,4 +51,8 @@ export type PageProps<
         data: HighlightResponse[];
         meta: Meta;
     };
+    pagination: {
+        next_url: string;
+        prev_url: string;
+    };
 };
