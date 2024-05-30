@@ -13,11 +13,9 @@ const MatchDashboard = ({ auth, match }: PageProps) => {
         router.delete(route("match.destroy", matchParams.id), {
             onSuccess: (page) => {
                 console.log("Delete successful", page);
-                // Optionally, refresh the list or show a success message
             },
             onError: (errors) => {
                 console.error("Delete failed", errors);
-                // Optionally, show an error message to the user
             },
         });
     };
@@ -68,70 +66,73 @@ const MatchDashboard = ({ auth, match }: PageProps) => {
                                 </th>
                             </tr>
                         </thead>
-                        {match.map((matchData: MatchResponse) => {
-                            console.log(matchData);
-                            return (
-                                <tr key={matchData.id}>
-                                    <td className="px-2 py-3 border-2 max-w-sm md:text-justify">
-                                        {matchData.home_team}
-                                    </td>
-                                    <td className="px-2 py-3 border-2 max-w-6xl text-justify">
-                                        {matchData.home_score}
-                                    </td>
-                                    <td className="px-2 py-3 border-2">
-                                        <img
-                                            src={matchData.home_team_logo}
-                                            alt=""
-                                            className="max-w-24 max-h-24 md:max-w-48 md:max-h-48"
-                                        />
-                                    </td>
-                                    <td className="px-2 py-3 border-2 max-w-sm md:text-justify">
-                                        {matchData.away_team}
-                                    </td>
-                                    <td className="px-2 py-3 border-2 max-w-6xl text-justify">
-                                        {matchData.away_score}
-                                    </td>
-                                    <td className="px-2 py-3 border-2">
-                                        <img
-                                            src={matchData.away_team_logo}
-                                            alt=""
-                                            className="max-w-24 max-h-24 md:max-w-48 md:max-h-48"
-                                        />
-                                    </td>
-                                    <td className="px-2 py-3 border-2 max-w-6xl text-justify">
-                                        {matchData.place}
-                                    </td>
-                                    <td className="px-2 py-3 border-2 max-w-6xl text-justify">
-                                        {matchData.category}
-                                    </td>
-                                    <td className="px-2 py-3 border-2 max-w-6xl text-justify">
-                                        <Link
-                                            href={route(
-                                                "match.highlight",
-                                                matchData.id
-                                            )}
-                                        >
-                                            <PrimaryButton>
-                                                Manage Highlight
-                                            </PrimaryButton>
-                                        </Link>
-                                    </td>
-
-                                    <td className="px-2 py-3 border-2 text-justify">
-                                        <div className="inline-flex flex-col gap-2">
-                                            <PrimaryButton>Edit</PrimaryButton>
-                                            <DangerButton
-                                                onClick={(e) =>
-                                                    deleteMatch(matchData)
-                                                }
+                        <tbody>
+                            {match.map((matchData: MatchResponse) => {
+                                return (
+                                    <tr key={matchData.id}>
+                                        <td className="px-2 py-3 border-2 max-w-sm md:text-justify">
+                                            {matchData.home_team}
+                                        </td>
+                                        <td className="px-2 py-3 border-2 max-w-6xl text-justify">
+                                            {matchData.home_score}
+                                        </td>
+                                        <td className="px-2 py-3 border-2">
+                                            <img
+                                                src={matchData.home_team_logo}
+                                                alt=""
+                                                className="max-w-24 max-h-24 md:max-w-48 md:max-h-48"
+                                            />
+                                        </td>
+                                        <td className="px-2 py-3 border-2 max-w-sm md:text-justify">
+                                            {matchData.away_team}
+                                        </td>
+                                        <td className="px-2 py-3 border-2 max-w-6xl text-justify">
+                                            {matchData.away_score}
+                                        </td>
+                                        <td className="px-2 py-3 border-2">
+                                            <img
+                                                src={matchData.away_team_logo}
+                                                alt=""
+                                                className="max-w-24 max-h-24 md:max-w-48 md:max-h-48"
+                                            />
+                                        </td>
+                                        <td className="px-2 py-3 border-2 max-w-6xl text-justify">
+                                            {matchData.place}
+                                        </td>
+                                        <td className="px-2 py-3 border-2 max-w-6xl text-justify">
+                                            {matchData.category}
+                                        </td>
+                                        <td className="px-2 py-3 border-2 max-w-6xl text-justify">
+                                            <Link
+                                                href={route(
+                                                    "match.highlight",
+                                                    matchData.id
+                                                )}
                                             >
-                                                Delete
-                                            </DangerButton>
-                                        </div>
-                                    </td>
-                                </tr>
-                            );
-                        })}
+                                                <PrimaryButton>
+                                                    Manage Highlight
+                                                </PrimaryButton>
+                                            </Link>
+                                        </td>
+
+                                        <td className="px-2 py-3 border-2 text-justify">
+                                            <div className="inline-flex flex-col gap-2">
+                                                <PrimaryButton>
+                                                    Edit
+                                                </PrimaryButton>
+                                                <DangerButton
+                                                    onClick={(e) =>
+                                                        deleteMatch(matchData)
+                                                    }
+                                                >
+                                                    Delete
+                                                </DangerButton>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
                     </table>
                 </section>
                 {/* <Pagination links={match.meta.links} /> */}
