@@ -46,6 +46,7 @@ export interface MatchResponse {
     id: number;
     place: string;
     tournament_name: string;
+    match_datetime: string;
 }
 
 export interface HighlightResponse {

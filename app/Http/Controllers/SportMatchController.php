@@ -32,6 +32,7 @@ class SportMatchController extends Controller
                 'home_team_logo' => $match->homeTeam->team_logo,
                 'away_team' => $match->awayTeam->name,
                 'away_score' => $match->away_score,
+                'match_datetime' => $match->match_datetime,
                 'away_team_logo' => $match->awayTeam->team_logo,
                 'place' => $match->homeTeam->station, // Assuming 'station' is the place
                 'category' => $match->category,
@@ -56,7 +57,7 @@ class SportMatchController extends Controller
     public function __invoke()
     {
         // Retrieve all sport matches with related data, paginated with 12 items per page
-        $matches = SportMatch::with(['homeTeam', 'awayTeam', 'highlights'])->paginate(12);
+        $matches = SportMatch::with(['homeTeam', 'awayTeam', 'highlights'])->paginate(9);
 
         $mappedData = $matches->items();
 
@@ -67,6 +68,7 @@ class SportMatchController extends Controller
                 'home_score' => $match->home_score,
                 'home_team_logo' => $match->homeTeam->team_logo,
                 'away_team' => $match->awayTeam->name,
+                'match_datetime' => $match->match_datetime,
                 'away_score' => $match->away_score,
                 'away_team_logo' => $match->awayTeam->team_logo,
                 'place' => $match->homeTeam->station, // Assuming 'station' is the place
