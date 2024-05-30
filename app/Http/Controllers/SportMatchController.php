@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\SportMatch;
 use App\Http\Requests\StoreSportMatchRequest;
 use App\Http\Requests\UpdateSportMatchRequest;
+use App\Http\Resources\HighlightResource;
 use App\Http\Resources\SportMatchResource;
+use App\Models\Highlight;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -49,10 +51,31 @@ class SportMatchController extends Controller
 
     public function __invoke()
     {
-        $query = SportMatch::query();
-        $sportMatch = $query->paginate(20);
-        return Inertia('Match/MatchPage', [
-            "match" => SportMatchResource::collection($sportMatch)
+        // Retrieve all sport matches with related data
+        $matches = SportMatch::with(['homeTeam', 'awayTeam', 'highlights'])->get();
+
+        // Map the data to the desired format
+        $data = $matches->map(function ($match) {
+            return [
+                'id' => $match->id,
+                'home_team' => $match->homeTeam->name,
+                'home_score' => $match->home_score,
+                'home_team_logo' => $match->homeTeam->team_logo,
+                'away_team' => $match->awayTeam->name,
+                'away_score' => $match->away_score,
+                'away_team_logo' => $match->awayTeam->team_logo,
+                'place' => $match->homeTeam->station, // Assuming 'station' is the place
+                'category' => $match->category,
+                'tournament_name' => $match->tournament_name,
+                'highlights' => $match->highlights->map(function ($highlight) {
+                    return $highlight->video_url;
+                })->toArray()
+            ];
+        });
+        // return response()->json($data[0]);
+        // Return the data to the Inertia view
+        return Inertia::render('Match/MatchPage', [
+            'match' => $data
         ]);
     }
 
@@ -115,5 +138,15 @@ class SportMatchController extends Controller
         return to_route('match.index')
             ->with('success', "match was deleted");
         // return response()->json(['message' => $sportMatch->id]);
+    }
+
+    public function getMatchHighlight(SportMatch $match)
+
+    {
+        // dd($match);
+        $highlights = $match->highlights()->get();
+        return Inertia::render('Admin/Match/Highlight/Index', [
+            'highlight' => HighlightResource::collection($highlights)       
+        ]);
     }
 }

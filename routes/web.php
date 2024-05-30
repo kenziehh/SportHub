@@ -28,11 +28,13 @@ Route::middleware('auth')->group(function () {
     Route::resource("admin/match", SportMatchController::class);
     Route::resource("admin/team", TeamController::class);
     Route::resource("admin/match/{match}/highlight", HighlightController::class);
+    Route::get("admin/match/{match}/highlight", [SportMatchController::class,'getMatchHighlight'])->name('match.highlight');
     Route::resource("admin/team/{team}/athlete", AthleteController::class);
     Route::get('admin/team/{team}/athlete', [TeamController::class, 'getTeamAthletes'])->name('team.athletes');
     Route::get('/news', [NewsController::class, 'getAllNews'])->name('news.page');
     Route::get('/match', [SportMatchController::class, '__invoke']);
-    Route::get('/highlight', [HighlightController::class, '__invoke'])->name('highlight.page');
+
+    Route::get('/highlight', [HighlightController::class, '__invoke'])->name('highlight.page'); 
 });
 
 

@@ -80,12 +80,15 @@ class HighlightController extends Controller
         //
     }
 
-    public function getMatchHighlights(SportMatch $sportMatch)
-    {
-        $athletes = $sportMatch->highlights()->get();
-        return Inertia::render('Admin/Team/Athlete/Index', [
-            'teamData' => new SportMatchResource($sportMatch),
-            'athletes' => Highlight::collection($athletes)
-        ]);
-    }
+    // public function getMatchHighlight(SportMatch $sportMatch)
+    // {
+
+    //     $athletes = $sportMatch->highlights()->get();
+    //     // dd($highlight);
+
+    //     return Inertia::render('Admin/Team/Athlete/Index', [
+    //         'teamData' => new SportMatchResource($sportMatch),
+    //         'athletes' => Highlight::collection($athletes)
+    //     ]);
+    // }
 }

@@ -107,7 +107,7 @@ const MatchDashboard = ({ auth, match }: PageProps) => {
                                     <td className="px-2 py-3 border-2 max-w-6xl text-justify">
                                         <Link
                                             href={route(
-                                                "highlight.index",
+                                                "match.highlight",
                                                 matchData.id
                                             )}
                                         >
