@@ -33,3 +33,10 @@
         0% 0%
     );
 }
+
+h1,
+.h1 {
+    font-size: 68px;
+    line-height: 90.72px;
+}
+
